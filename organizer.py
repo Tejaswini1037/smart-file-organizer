@@ -47,7 +47,8 @@ def move_file(source, destination_folder):
         )
         count += 1
 
-    shutil.move(source, destination)
+    if not os.path.exists(destination):
+       shutil.copy2(source, destination)
 
     write_log(
         f"Moved '{source}' -> '{destination}'"
@@ -68,7 +69,8 @@ def organize_files(folder_path):
     other_count = 0
 
     for file in os.listdir(folder_path):
-
+        if file in ["Images", "Documents", "Videos", "Others", "logs.txt"]:
+            continue
         source_path = os.path.join(folder_path, file)
 
         if os.path.isdir(source_path):
