@@ -1,37 +1,28 @@
 # Smart File Organizer & Cleaner
 
-## Description
+##  Project Description
+A Python automation tool that organizes messy folders into structured categories like Images, Documents, Videos, and Others.
 
-A Python-based file management tool that automatically organizes files into categorized folders such as Images, Documents, Videos, and Others.
+---
 
 ## Features
+- Automatic file sorting by extension
+- Creates folders dynamically
+- Handles duplicate filenames safely
+- Generates activity logs
+- Error handling for invalid paths
 
-* Automatic file sorting
-* Folder creation using OS module
-* Duplicate filename handling
-* Log generation
-* Exception handling
-* User input support
+---
 
 ## Technologies Used
+- Python 3
+- os module
+- shutil module
+- datetime module
 
-* Python 3
-* os module
-* shutil module
-* datetime module
+---
 
 ## How to Run
 
-1. Open terminal.
-2. Navigate to project directory.
-3. Run:
-
+```bash
 python organizer.py
-
-4. Enter the folder path to organize.
-
-## Sample Output
-
-Organization Completed!
-Total Files Processed: 5
-Logs saved in logs.txt
