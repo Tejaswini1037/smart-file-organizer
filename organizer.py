@@ -34,7 +34,6 @@ def get_category(file_name):
 
 
 def move_file(source, destination_folder):
-
     file_name = os.path.basename(source)
     destination = os.path.join(destination_folder, file_name)
 
@@ -63,6 +62,10 @@ def organize_files(folder_path):
     create_folder(os.path.join(folder_path, "Others"))
 
     total_files = 0
+    image_count = 0
+    document_count = 0
+    video_count = 0
+    other_count = 0
 
     for file in os.listdir(folder_path):
 
@@ -82,7 +85,22 @@ def organize_files(folder_path):
 
         total_files += 1
 
-    return total_files
+        if category == "Images":
+            image_count += 1
+        elif category == "Documents":
+            document_count += 1
+        elif category == "Videos":
+            video_count += 1
+        else:
+            other_count += 1
+
+    return (
+        total_files,
+        image_count,
+        document_count,
+        video_count,
+        other_count
+    )
 
 
 def main():
@@ -91,9 +109,7 @@ def main():
     print("SMART FILE ORGANIZER")
     print("=" * 50)
 
-    folder_path = input(
-        "Enter folder path to organize: "
-    )
+    folder_path = input("Enter folder path to organize: ")
 
     try:
 
@@ -102,14 +118,21 @@ def main():
                 "Folder does not exist."
             )
 
-        total = organize_files(folder_path)
+        total, images, documents, videos, others = organize_files(folder_path)
 
         print("\nOrganization Completed!")
-        print(f"Total Files Processed: {total}")
-        print("Logs saved in logs.txt")
+
+        print("\n===== SUMMARY =====")
+        print(f"Total Files Processed : {total}")
+        print(f"Images               : {images}")
+        print(f"Documents            : {documents}")
+        print(f"Videos               : {videos}")
+        print(f"Others               : {others}")
+
+        print("\nLogs saved in logs.txt")
 
         write_log(
-            f"Organization completed. Files processed: {total}"
+            f"Organization completed. Total={total}, Images={images}, Documents={documents}, Videos={videos}, Others={others}"
         )
 
     except FileNotFoundError as e:
